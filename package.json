@@ -10,6 +10,7 @@
     "fmt": "npx prettier -w ."
   },
   "dependencies": {
+    "@turf/rewind": "^6.5.0",
     "d3": "^7.8.5",
     "next": "14.0.3",
     "react": "^18",
