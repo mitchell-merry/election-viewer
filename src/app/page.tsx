@@ -1,29 +1,33 @@
 'use client';
 
 import * as d3 from 'd3';
-import { useEffect, useState } from 'react';
-import { MapSchema, type Map } from '@/lib/types';
+import { useEffect, useRef, useState } from 'react';
+import { type Map } from '@/lib/types';
 import { loadMap } from '@/lib/maps';
 
 export default function Home() {
-  let [map, setMap] = useState<Map | undefined>();
-  let [error, setError] = useState<Error | undefined>();
+  const [error, setError] = useState<Error | undefined>();
+  const [mapData, setMapData] = useState<Map | undefined>();
+  const svgRef = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
-    loadMap().then(setMap).catch(setError);
+    loadMap().then(setMapData).catch(setError);
   }, []);
 
-  if (error) {
-    return <main className='min-h-screen'>{`${error}`}</main>;
-  }
-
-  if (!map) {
-    return <main className='min-h-screen'>Loading...</main>;
-  }
+  if (error) return <main className='min-h-screen'>{`${error}`}</main>;
+  if (!mapData) return <main className='min-h-screen'>Loading...</main>;
 
   const projection = d3.geoEqualEarth();
   const a = d3.geoPath(projection);
-  const path = projection.fitSize([1000, 800], map);
+  const WIDTH = 1000;
+  const HEIGHT = 800;
+  const path = projection.fitSize([WIDTH, HEIGHT], mapData);
 
-  return <main className="min-h-screen"></main>;
+  const svg = d3.select(svgRef.current)
+    .attr("width", WIDTH)
+    .attr("height", HEIGHT);
+
+  return <main className="min-h-screen">
+    <svg ref={svgRef}></svg>
+  </main>;
 }
