@@ -10,11 +10,15 @@
     "fmt": "npx prettier -w ."
   },
   "dependencies": {
+    "d3": "^7.8.5",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/geojson": "^7946.0.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
