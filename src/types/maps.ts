@@ -1,22 +1,5 @@
-import { z, ZodSchema, ZodType } from 'zod';
+import { z, ZodType } from 'zod';
 import type { GeoJSON } from 'geojson';
-
-const matchesSchema = <Schema extends ZodSchema>(
-  schema: Schema,
-  value: unknown,
-): value is z.infer<Schema> => {
-  return schema.safeParse(value).success;
-};
-
-export const assertSchema: <Schema extends ZodSchema>(
-  schema: Schema,
-  value: unknown,
-) => asserts value is z.infer<Schema> = <Schema extends ZodSchema>(
-  schema: Schema,
-  value: unknown,
-): asserts value is z.infer<Schema> => {
-  schema.parse(value);
-};
 
 export const MapMetadataSchema = z.object(
   {

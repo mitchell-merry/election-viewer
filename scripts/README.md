@@ -1,0 +1,1 @@
+These are intended to be run via `bun`, i.e. `bun process-raw.ts`.

@@ -1,0 +1,20 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mitchell-merry/election-viewer.git"
+  },
+  "dependencies": {
+    "@types/object.groupby": "^1.0.3",
+    "csv-parse": "^5.5.5",
+    "object.groupby": "^1.0.2",
+    "zod": "^3.22.4"
+  },
+  "private": true
+}
