@@ -15,7 +15,6 @@ export enum State {
 export type PartyConfigType = {
   name: string,
   colour: HexCode;
-  // colourHover: HexCode;
 };
 
 // From 2022 only
@@ -56,13 +55,13 @@ export const partyConfig = {
     colour: "#ff6300",
   },
   "IND": {
-    name: "Independents",
+    name: "Independent",
     colour: "#888888",
   },
   // The default
   "": {
     name: "N/A",
-    colour: "#cccccc",
+    colour: "#FFFFFF",
   }
 // TODO make not partial (specify values for everything)
 } as const satisfies Partial<Record<Party, PartyConfigType>>;

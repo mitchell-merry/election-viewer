@@ -32,9 +32,3 @@ svg g path {
   stroke-width: 1px;
   vector-effect: non-scaling-stroke;
 }
-
-svg g path {
-  stroke: var(--map-object-stroke);
-  stroke-width: 1px;
-  vector-effect: non-scaling-stroke;
-}

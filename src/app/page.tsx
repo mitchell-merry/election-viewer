@@ -69,8 +69,8 @@ export default function Home() {
       .attr('d', path)
       .attr('data-name', datum => datum.properties.name)
       .attr('data-party', datum => getParty(results, datum.properties.name).name)
-      .attr('fill', datum => getParty(results, datum.properties.name).colour);
-      // .attr('class', () => getParty());
+      .attr('fill', datum => getParty(results, datum.properties.name).colour)
+      .attr('class', 'hover:brightness-75');
   }, [mapData, results]);
 
   if (error) return <main className="min-h-screen">{`${error}`}</main>;
