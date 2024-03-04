@@ -17,34 +17,39 @@ export default function Home() {
 
   useEffect(() => {
     loadMap().then(data => {
-      // geoJSON.features = geoJSON.features.map((f) => turf.rewind(f,{reverse:true}));
-      const rewindedData: Map = {
+      const rewoundData: Map = {
         ...data,
         features: data.features.map(f => rewind(f, { reverse: true }))
       };
-      setMapData(rewindedData);
+      setMapData(rewoundData);
     }).catch(setError);
   }, []);
+
+  useEffect(() => {
+    if (!mapData || !svgRef.current) return;
+
+    const projection = d3.geoEquirectangular();
+    const path = d3.geoPath(projection);
+    projection.fitSize([WIDTH, HEIGHT], mapData);
+
+    const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove();
+
+    const g_elements = svg.append("g").attr("class", "elements");
+    const zoom = d3.zoom<SVGSVGElement, unknown>().on('zoom', e => g_elements.attr('transform', e.transform));
+    svg.call(zoom);
+
+    g_elements.selectAll("path")
+      .data(mapData.features)
+      .enter()
+      .append('path')
+      .attr('d', path);
+  }, [mapData]);
 
   if (error) return <main className='min-h-screen'>{`${error}`}</main>;
   if (!mapData) return <main className='min-h-screen'>Loading...</main>;
 
-  const projection = d3.geoEquirectangular();
-  const path = d3.geoPath(projection);
-  projection.fitSize([WIDTH, HEIGHT], mapData);
-
-  const svg = d3.select(svgRef.current)
-    .attr("width", WIDTH)
-    .attr("height", HEIGHT);
-
-  const g_elements = svg.append("g").attr("class", "elements");
-  g_elements.selectAll("path")
-    .data(mapData.features)
-    .enter()
-    .append('path')
-    .attr('d', path);
-
   return <main className="min-h-screen">
-    <svg ref={svgRef}></svg>
+    <svg ref={svgRef} className="min-h-screen" width="100%" height="100%"></svg>
   </main>;
 }
