@@ -42,9 +42,13 @@ export const MultiPolygonGeometrySchema = z.object({
   coordinates: PositionSchema.array().array().array(),
 }) satisfies ZodType<GeoJSON.MultiPolygon>;
 
+export const FeaturePropertiesSchema = z.object({
+  name: z.string(),
+});
+
 export const FeatureSchema = z.object({
   type: z.literal('Feature'),
-  properties: z.object({}),
+  properties: FeaturePropertiesSchema,
   geometry: z.union([PolygonGeometrySchema, MultiPolygonGeometrySchema]),
 });
 

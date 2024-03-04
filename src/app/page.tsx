@@ -47,7 +47,8 @@ export default function Home() {
       .data(mapData.features)
       .enter()
       .append('path')
-      .attr('d', path);
+      .attr('d', path)
+      .attr('data-name', datum => datum.properties.name);
   }, [mapData]);
 
   if (error) return <main className="min-h-screen">{`${error}`}</main>;
