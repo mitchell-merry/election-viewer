@@ -10,6 +10,13 @@ import { loadMap } from '@/lib/maps';
 const WIDTH = 1000;
 const HEIGHT = 800;
 
+const getParty = () => {
+  const r = Math.random() * 3;
+  const i = Math.floor(r);
+  console.log(r, i);
+  return ['alp', 'greens', 'lnp'][i];
+};
+
 export default function Home() {
   const [error, setError] = useState<Error | undefined>();
   const [mapData, setMapData] = useState<Map | undefined>();
@@ -48,7 +55,9 @@ export default function Home() {
       .enter()
       .append('path')
       .attr('d', path)
-      .attr('data-name', datum => datum.properties.name);
+      .attr('data-name', datum => datum.properties.name)
+      .attr('class', () => getParty());
+      // .classed(() => getParty(), true);
   }, [mapData]);
 
   if (error) return <main className="min-h-screen">{`${error}`}</main>;

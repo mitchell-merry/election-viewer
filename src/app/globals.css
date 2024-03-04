@@ -7,11 +7,18 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --map-back: #eee;
+  --map-back: #626262;
   --map-border: #000;
-  --map-object-fill: #ddd;
-  --map-object-stroke: #aaa;
-  --map-object-hover-fill: rgb(204, 204, 204);
+  --map-object-stroke: #393939;
+
+  --map-object-alp: #E13940;
+  --map-object-alp-hover: #cf292f;
+
+  --map-object-greens: #009C3D;
+  --map-object-greens-hover: #038a36;
+
+  --map-object-lnp: #1C4F9C;
+  --map-object-lnp-hover: #0c397d;
 }
 
 body {
@@ -30,12 +37,32 @@ svg {
 }
 
 svg g path {
-  fill: var(--map-object-fill);
   stroke: var(--map-object-stroke);
   stroke-width: 1px;
   vector-effect: non-scaling-stroke;
 }
 
-svg g path:hover {
-  fill: var(--map-object-hover-fill);
+
+.alp {
+  fill: var(--map-object-alp);
+}
+
+.alp:hover {
+  fill: var(--map-object-alp-hover);
+}
+
+.greens {
+  fill: var(--map-object-greens);
+}
+
+.greens:hover {
+   fill: var(--map-object-greens-hover);
+}
+
+.lnp {
+  fill: var(--map-object-lnp);
+}
+
+.lnp:hover {
+  fill: var(--map-object-lnp-hover);
 }
