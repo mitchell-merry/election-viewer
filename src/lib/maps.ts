@@ -1,8 +1,10 @@
 import { MapSchema } from '@/types/maps';
 import { SimpleFirstPrefsSchema } from '@/types/votes';
 
+const basePath = process.env.BASE_PATH ?? '';
+
 export const loadMap = async () => {
-  const response = await fetch('/2021_ELB_region.geojson');
+  const response = await fetch(`${basePath}/2021_ELB_region.geojson`);
 
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -18,7 +20,7 @@ export const loadMap = async () => {
 };
 
 export const loadVotes = async () => {
-  const file = '/2022-FirstPrefs.json';
+  const file = `${basePath}/2022-FirstPrefs.json`;
   const response = await fetch(file);
 
   if (!response.ok) {
