@@ -1,7 +1,7 @@
 import { MapSchema } from '@/types/maps';
 import { SimpleFirstPrefsSchema } from '@/types/votes';
 
-const basePath = process.env.BASE_PATH ?? '';
+const basePath = '/election-viewer';
 
 export const loadMap = async () => {
   const response = await fetch(`${basePath}/2021_ELB_region.geojson`);
