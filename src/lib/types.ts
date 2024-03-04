@@ -28,15 +28,8 @@ export const MapMetadataSchema = z.object(
 );
 
 export const PositionSchema = z.union([
-  z.tuple([
-    z.number(),
-    z.number(),
-  ]),
-  z.tuple([
-    z.number(),
-    z.number(),
-    z.number(),
-  ]),
+  z.tuple([z.number(), z.number()]),
+  z.tuple([z.number(), z.number(), z.number()]),
 ]) satisfies ZodType<GeoJSON.Position>;
 
 export const PolygonGeometrySchema = z.object({
@@ -59,6 +52,8 @@ export const MapSchema = z.object({
   type: z.literal('FeatureCollection'),
   metadata: MapMetadataSchema,
   features: FeatureSchema.array(),
-}) satisfies z.ZodType<GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon>>;
+}) satisfies z.ZodType<
+  GeoJSON.FeatureCollection<GeoJSON.Polygon | GeoJSON.MultiPolygon>
+>;
 
 export type Map = z.infer<typeof MapSchema>;
