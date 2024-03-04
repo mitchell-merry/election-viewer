@@ -17,11 +17,10 @@ export default function Home() {
 
   useEffect(() => {
     loadMap().then(data => {
-      const rewoundData: Map = {
+      setMapData({
         ...data,
         features: data.features.map(f => rewind(f, { reverse: true }))
-      };
-      setMapData(rewoundData);
+      });
     }).catch(setError);
   }, []);
 
