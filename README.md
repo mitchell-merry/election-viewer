@@ -18,3 +18,8 @@ Each colour corresponds to a party.
 
 Specifically, the colour of each electorate (the seat) is indicative of the party that won the seat in the 2022
 Australian federal election (to represent the electorate in the House of Representatives).
+
+Notice how you can't see much ALP (pale red); this is because they win the seats that are in the capitals, and not
+so much the regional seats.
+
+In this map, you can zoom right into these areas, as much as you like.
